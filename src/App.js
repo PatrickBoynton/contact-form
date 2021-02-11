@@ -5,14 +5,15 @@ class ContactForm extends Component {
   render() {
     return (
       <form onSubmit={console.log("Hello world!")}>
-        <label>First Name</label>
-        <input type="text" />
-        <label>Last Name</label>
-        <input type="text" />
-        <label>Address</label>
-        <input type="text" />
-        <label>Phone Number</label>
-        <input type="text" />
+        <label htmlFor="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name" value={this.state.firstName}/>
+        <label htmlFor="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" value={this.state.lastName}/>
+        <label htmlFor="address">Address</label>
+        <input type="text" id="address" name="address" value={this.state.address}/>
+        <label htmlFor="phone-number">Phone Number</label>
+        <input type="text" id="phone-number" name="phone-number" value={this.state.phoneNumber}/>
+        <button type="submit">Add Contacts</button>
       </form>
     )
   }
