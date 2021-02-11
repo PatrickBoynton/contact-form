@@ -4,9 +4,7 @@ import { Component } from 'react';
 class ContactForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      contacts: []
-    }
+    this.state = {}
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,17 +17,18 @@ class ContactForm extends Component {
     this.props.addContact(this.state);
     e.preventDefault();
   }
+
   render() {
     return (
-      <form onSubmit={console.log("Hello world!")}>
+      <form onSubmit={this.handleSubmit}>
         <label htmlFor="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" value={this.state.firstName}/>
+        <input type="text" id="first-name" name="first-name" value={this.state.firstName} onChange={this.handleInput}/>
         <label htmlFor="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" value={this.state.lastName}/>
+        <input type="text" id="last-name" name="last-name" value={this.state.lastName} onChange={this.handleInput}/>
         <label htmlFor="address">Address</label>
-        <input type="text" id="address" name="address" value={this.state.address}/>
+        <input type="text" id="address" name="address" value={this.state.address} onChange={this.handleInput}/>
         <label htmlFor="phone-number">Phone Number</label>
-        <input type="text" id="phone-number" name="phone-number" value={this.state.phoneNumber}/>
+        <input type="text" id="phone-number" name="phone-number" value={this.state.phoneNumber} onChange={this.handleInput}/>
         <button type="submit">Add Contacts</button>
       </form>
     )
@@ -40,10 +39,10 @@ class ContactForm extends Component {
   function ContactList(props) {
     const contacts = props.contacts?.map((contact, index) => (
       <li>
-        <h2>{contact.firstName}</h2>
-        <h2>{contact.lastName}</h2>
+        <h2>{contact["first-name"]}</h2>
+        <h2>{contact["last-name"]}</h2>
         <p>{contact.address}</p>
-        <p>{contact.phoneNumber}</p>
+        <p>{contact["phone-number"]}</p>
       </li>
     ))
     return (
@@ -71,10 +70,11 @@ class App extends Component {
   }
 
   render () {
+    const contacts = JSON.parse(localStorage.getItem("contacts"));
     return (
       <div className="App">
       <ContactForm addContact={this.addContact}/>
-      <ContactList contacts={this.state?.contacts}/>
+      <ContactList contacts={contacts}/>
     </div>
     )
   }
