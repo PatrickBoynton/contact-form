@@ -39,19 +39,21 @@ class App extends Component {
     this.addContact = this.addContact.bind(this);
   }
   componentDidMount() {
-    contacts = [];
+    const contacts = [];
     this.setState({ contacts });
   }
-  
+
   addContact(contact) {
     const contacts = [...this.state.contacts];
     contacts.push(contact);
+    localStorage.setItem("contacts", JSON.stringify(contacts))
   }
+
   render () {
     return (
       <div className="App">
-      <ContactForm/>
-      <ContactList />
+      <ContactForm addContact={this.addContact}/>
+      <ContactList contacts={this.state?.contacts}/>
     </div>
     )
   }
