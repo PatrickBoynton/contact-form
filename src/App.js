@@ -2,6 +2,15 @@ import './App.css';
 import { Component } from 'react';
 
 class ContactForm extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      contacts: []
+    }
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
   render() {
     return (
       <form onSubmit={console.log("Hello world!")}>
