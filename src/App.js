@@ -11,6 +11,14 @@ class ContactForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
+  handleInput(e) {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  handleSubmit(e) {
+    this.props.addContact(this.state);
+    e.preventDefault();
+  }
   render() {
     return (
       <form onSubmit={console.log("Hello world!")}>
