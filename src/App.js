@@ -36,19 +36,22 @@ class ContactForm extends Component {
   }
 }
 
-class ContactList extends Component {
-  render() {
-    return (
+
+  function ContactList(props) {
+    const contacts = props.contacts?.map((contact, index) => (
       <li>
-        <h2>First Name</h2>
-        <h2>Last Name</h2>
-        <p>Address</p>
-        <p>Phone Number</p>
+        <h2>{contact.firstName}</h2>
+        <h2>{contact.lastName}</h2>
+        <p>{contact.address}</p>
+        <p>{contact.phoneNumber}</p>
       </li>
+    ))
+    return (
+      <ul>
+        {contacts}
+      </ul>
     )
   }
-}
-
 
 
 class App extends Component {
