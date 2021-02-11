@@ -34,6 +34,19 @@ class ContactList extends Component {
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.addContact = this.addContact.bind(this);
+  }
+  componentDidMount() {
+    contacts = [];
+    this.setState({ contacts });
+  }
+  
+  addContact(contact) {
+    const contacts = [...this.state.contacts];
+    contacts.push(contact);
+  }
   render () {
     return (
       <div className="App">
